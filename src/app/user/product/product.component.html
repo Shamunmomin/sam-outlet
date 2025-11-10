@@ -1,0 +1,35 @@
+
+<app-header></app-header>
+
+<h4 class="prod">Products</h4>
+  <div class="container">
+    <div class="row g-1 g-md-3">
+      <!-- col-6 means 2 columns per row on all devices -->
+      <div class="col-6 col-md-4 col-lg-3 mb-0 mb-md-4" *ngFor="let product of products | searchProduct:searchText">
+        <div class="card h-100 shadow-lg product-card animate-fade-in">
+         <a (click)="onSubmit(product.id)">
+          <img [src]="'https://sam-outlet-backend.onrender.com/' + product.imagePath"
+          [alt]="product.name"
+          class="product-image card-img-top">
+     <div class="card-body d-flex flex-column">
+       <h5 class="card-title">{{ product.name }}</h5>
+       <h4 class="text-danger price-animate">₹{{ product.discountPrice }}</h4>
+       <p>
+         <del class="text-muted">₹{{ product.price }}</del>
+         <span class="text-success ms-2">({{ product.discount }}% off)</span>
+       </p>
+       <p class="text-primary small">
+         FREE delivery in<br>
+     <span style="color: blueviolet; font-weight: bold;">24 Hours</span> 
+       </p>
+       <button class="btn btn-warning btn-sm mt-2">
+         <i class="fa fa-shopping-cart me-1"></i> View Details
+       </button>
+     </div>
+         </a>
+        </div>
+      </div>
+    </div>
+  </div>
+    <app-mobile-end-icons></app-mobile-end-icons>
+  <app-footer></app-footer>

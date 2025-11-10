@@ -1,0 +1,42 @@
+<app-header></app-header>
+
+<h2 class="font-monospace prod-heading text-center">Categories</h2>
+
+<div class="container prod">
+  <div class="row g-3">
+    <div
+      class="col-lg-4 col-md-6 col-sm-12"
+      *ngFor="let category of categories"
+    >
+      <div class="card h-100 shadow product-card animate-fade-in">
+       <a (click)="sendCategoryName(category.name);" style="text-decoration: none;">
+         <img
+          [src]="'https://sam-outlet-backend.onrender.com/' + category.filePath"
+          class="card-img-top category-image"
+          alt="{{ category.name }}"
+        />
+        <div class="card-body d-flex flex-column">
+          <h5 class="card-title fw-semibold text-dark">
+            {{ category.name }}
+          </h5>
+          <p class="card-text mb-2">
+            Status:
+            <strong
+              [class.text-success]="category.isActive"
+              [class.text-danger]="!category.isActive"
+            >
+              {{ category.isActive ? 'Active' : 'Inactive' }}
+            </strong>
+          </p>
+          <button class="btn btn-warning btn-sm mt-auto shadow-sm">
+            <i class="fa fa-shopping-cart me-1"></i> View Details
+          </button>
+        </div>
+       </a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<app-mobile-end-icons></app-mobile-end-icons>
+<app-footer></app-footer>

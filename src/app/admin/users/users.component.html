@@ -1,0 +1,49 @@
+<app-header></app-header>
+
+<div class="container p-4 fade-slide-up">
+  <div class="card border-0 custom-shadow  rounded-4" style="backdrop-filter: blur(10px); background: rgba(255, 255, 255, 0.95);">
+    <div class="card-header text-center bg-gradient rounded-top-4" style="background: linear-gradient(90deg, #7e24ec, #e5eff2); color: rgb(26, 25, 25);">
+      <h3 class="fw-bold mb-0"> All Users</h3>
+
+      <div *ngIf="succMsg" class="alert alert-success text-center mt-2">
+        {{ succMsg }}
+      </div>
+      <div *ngIf="errorMsg" class="alert alert-danger text-center mt-2">
+        {{ errorMsg }}
+      </div>
+
+    </div>
+    <div class="card-body p-4">
+      <table class="table table-hover table-bordered align-middle text-center rounded">
+        <thead class="table-dark">
+          <tr>
+            <th>Sl No</th>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Status</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let user of userData; index as i" class="fade-slide-up hover-glow rounded">
+            <th scope="row">{{ i + 1 }}</th>
+            <td>{{ user.name }}</td>
+            <td>{{ user.email }}</td>
+            <td>
+                <span *ngIf="user.isEnable; else disabled" class="badge bg-success">Enabled</span>
+                  <ng-template #disabled>
+                    <span class="badge bg-danger">Disabled</span>
+                  </ng-template>
+            </td>
+            <td>
+              <a class="btn btn-sm btn-outline-success me-2" (click)="updateStatus(true, user.id)">Active</a>
+              <a class="btn btn-sm btn-outline-danger" (click)="updateStatus(false, user.id)">Inactive</a>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<app-footer></app-footer>

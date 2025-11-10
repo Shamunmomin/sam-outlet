@@ -1,0 +1,66 @@
+
+.conatiner-fluide{
+  margin-top: 5rem;
+}
+ /* reggister table desgin */
+ .register-box {
+  box-shadow: 0 8px 20px rgba(119, 25, 234, 0.3);
+   transition: box-shadow 0.3s ease-in-out;
+  border: 1px solid #151516;
+  background-color: #ffffff;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+
+.header-box {
+  background: linear-gradient(to right, #1b1d1c, #005F73);
+  color: #FFED66;
+}
+ 
+ 
+
+  /* admin table design start */
+
+ .custom-shadow {
+  box-shadow: 0 8px 20px rgba(119, 25, 234, 0.3);
+   transition: box-shadow 0.3s ease-in-out;
+ }
+
+.fade-slide-up {
+  animation: fadeSlideUp 0.7s ease-in-out;
+}
+
+@keyframes fadeSlideUp {
+  0% {
+    opacity: 0;
+    transform: translateY(25px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.hover-glow:hover {
+  box-shadow: 0 0.75rem 1.5rem rgba(23, 119, 221, 0.2);
+  transition: box-shadow 0.3s ease-in-out;
+}
+
+  /* admin table design end */
+
+  /* admin management start */
+@keyframes zoomIn {
+  0% { transform: scale(0.5); opacity: 0; }
+  100% { transform: scale(1); opacity: 1; }
+}
+.animate-zoom-in {
+  animation: zoomIn 0.6s ease-out;
+}
+ 
+
+/* register admin */
+.registeradmin{
+  background-color: rgb(42, 39, 39);
+  color: #FFD700;
+}

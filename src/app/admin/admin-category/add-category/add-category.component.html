@@ -1,0 +1,95 @@
+
+<app-header></app-header>
+
+<div class="container mt-0">
+  <div class="row">
+    <div class="col-md-3">
+      <div class="card shadow rounded-4">
+        <div class="card-header text-center fs-4 fw-semibold bg-dark text-white">
+          Add Category
+        </div>
+        <div class="card-body">
+          <form (ngSubmit)="saveCategory()" #imageForm="ngForm">
+           
+            <div class="mb-3">
+              <label for="categoryName">Category Name:</label>
+              <input id="categoryName" name="categoryName" type="text" [(ngModel)]="cat.name" class="form-control" placeholder="Enter category name" required />
+            </div>
+
+            <div class="mb-3">
+              <label for="isActive">Status:</label>
+              <select id="isActive" class="form-select" [(ngModel)]="cat.isActive" name="isActive" required>
+                <option [value]="true">Active</option>
+                <option [value]="false">Inactive</option>
+              </select>
+            </div>
+            
+
+            <div class="mb-3">
+              <label>Upload Image</label>
+              <input type="file" id="fileInput" (change)="onFileSelected($event)" class="form-control mt-2" accept="image/*" required />
+            </div>
+
+             <button type="submit" class="btn btn-primary" [disabled]="!selectedFile">Upload</button>
+            
+             <div
+             *ngIf="uploadMessage"
+             class="alert alert-success alert-dismissible fade show mt-3 animated-message"
+             role="alert">
+             {{ uploadMessage }}
+           </div>
+          
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <!-- DISPLAY ALL CATEORIES -->
+    <div class="col-md-8 mx-auto">
+      <div class="card shadow rounded-4">
+        <div class="card-header text-center fs-4 fw-semibold bg-dark text-white">Category Details</div>
+        <div class="card-body">
+          <table class="table table-hover align-middle text-center">
+            <thead class="table-light">
+              <tr>
+                <th scope="col">Sl No</th>
+                <th scope="col">Category</th>
+                <th scope="col">Status</th>
+                <th scope="col">Image</th>
+                <th scope="col">Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let category of categories; index as i">
+                <td> {{i+1}} </td>
+                <td>{{ category.name }}</td>
+                <td>
+                  <span class="badge" [ngClass]="category.isActive ? 'bg-success' : 'bg-warning'">
+                  {{ category.isActive ? 'Active' : 'Inactive' }}
+                   </span>
+              </td>   
+                <td>
+                  <div class="image-container">
+                    <img 
+                    *ngIf="category.filePath"
+                    [src]="'https://sam-outlet-backend.onrender.com/uploads/' + getFileName(category.filePath)" width="80" height="60"class="rounded shadow border"
+                     />
+                  </div>                  
+                </td>   
+                <td>
+                  <button [routerLink]="['/admin/adminEditCategory',category.id]" class="btn btn-primary btn-sm"><i class="fa-solid fa-pen-to-square fa-1x"></i> Edit </button> 
+                  <button (click)="onDelete(category.id)" class="btn btn-danger btn-sm ms-2"><i class="fa-solid fa-trash fa-1x"></i>Delete</button>
+                </td>
+              </tr>
+
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+</div>
+
+<app-footer></app-footer>

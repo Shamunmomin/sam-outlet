@@ -1,0 +1,112 @@
+<app-header></app-header>
+
+<div class="container-fluid p-4">
+  <h2 class="text-center mb-4">All Orders</h2>
+
+  <div *ngIf="errorMessage" class="alert alert-danger text-center">
+    {{ errorMessage }}
+  </div>
+
+  <div *ngIf="successMessage" class="alert alert-success text-center">
+    {{ successMessage }}
+  </div>
+
+  <div *ngIf="orderData.length > 0; else noOrders">
+
+    <div class="col-md-4 p-4">
+
+					<form>
+						<div class="row">
+							<div class="col-10">
+								<input type="text" class="form-control" [(ngModel)]="orderId" name="orderId"
+									placeholder="Enter order id">
+							</div>
+							<div class="col-2">
+								<button class="btn btn-primary col" (click)="searchOrder()" >Search</button>
+							</div>
+						</div>
+					</form>
+	</div>
+
+  
+<a routerLink="/admin/" class="text-decoration-none fw-bold"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" class="bi bi-arrow-left" viewBox="0 0 16 16">
+  <path fill-rule="evenodd" d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8"/>
+</svg> Back</a>
+
+
+    <div class="table-responsive mt-2">
+      <table class="table table-bordered table-hover">
+        <thead class="table-primary">
+          <tr>
+            <th>Order ID</th>
+            <th>Image</th>
+            <th>Deliver Details</th>
+            <th>Order Date</th>
+            <th>Product Details</th>
+            <th>Price</th>
+            <th>Status</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let order of orderData">
+            <td>{{ order.orderId }}</td>
+            <td><img [src]="'http://localhost:8080/'+order.product.imagePath" alt="Product Image" width="90"></td>
+
+            <td>
+                <span class="textcolor"> Name : </span> {{order.orderAddress.firstName+'
+									 '+order.orderAddress.lastName}}<br> 
+                <span class="textcolor">Email :</span> {{order.orderAddress.email}} <br> 
+                <span class="textcolor"> Mobno:</span> {{order.orderAddress.mobileNo}} <br>
+                <span class="textcolor"> Address :</span> {{order.orderAddress.address}} <br>
+                <span class="textcolor"> City :</span> {{order.orderAddress.city}} <br>
+                <span class="textcolor"> State :</span>{{order.orderAddress.state}}, {{order.orderAddress.pincode}} <br>
+                <span class="text-warning fw-bold" *ngIf="order.size"> Size: {{order.size}} </span> 
+            </td>
+
+            <td>{{ order.orderDate | date }}</td>
+            <td>{{ order.product.name }}</td>
+            <td>
+              Quantity: {{ order.quantity }} <br>
+              Price: {{ order.price }} <br>
+              Tax: {{(order.price * 0.05) | number:'1.2-2' }} <br>
+              Total Price: <span  style="color: rgb(184, 13, 223); font-weight: bold;">  &#8377;{{ order.price + (order.price * 0.05) | number:'1.2-2' }} </span>
+            </td>
+            <td> <span [ngClass]="{ 'statusDanger': order.status === 'Cancelled', 'statusSuccess': order.status === 'Delivered','statusWarning': order.status === 'Order Received'}"> {{ order.status }} </span> 
+            </td>
+           <td>
+               <form (ngSubmit)="orderStatus !== null && onUpdateStatus(order.orderId, orderStatus)">
+                <div class="row"> 
+                  <!-- Dropdown to Select Status -->
+                  <div class="col">
+                    <select class="form-select" [disabled]="order.status=='Cancelled' || order.status=='Delivered'" [(ngModel)]="orderStatus" name="orderStatus" required>
+                      <option value="">--Select Status--</option>
+                      <option value="1">In Progress</option>
+                      <option value="2">Order Received</option>
+                      <option value="3">Product Packed</option>
+                      <option value="4">Out For Delivery</option>
+                      <option value="5">Delivered</option>
+                      <option value="6">Cancelled</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="col" style="margin-top: 7px;">
+                    <button type="submit" class="btn btn-success btn-sm col" [disabled]="order.status=='Cancelled' || order.status=='Delivered'">Update</button>
+                  </div>
+              </form>
+           </td>
+
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <ng-template #noOrders>
+    <p class="text-center">No orders found for this user.</p>
+  </ng-template>
+</div>
+
+<app-mobile-end-icons></app-mobile-end-icons>
+<app-footer></app-footer>
+

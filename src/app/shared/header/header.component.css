@@ -1,0 +1,105 @@
+ 
+ 
+.navbar {
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  #textsize a{
+    font-size: 16px;
+    color: #fff;
+   text-decoration: none;
+  }
+  
+  /* Basic reset */
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  a{
+    cursor: pointer;
+  }
+  /* Sidebar styles */
+  .sidebar {
+    width: 200px;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: -250px; /* Initially hidden */
+    background-color: #333;
+    color: white;
+    padding-top: 20px;
+    transition: left 0.2s ease-in-out; /* Smooth transition */
+    z-index: 1040;
+  
+    transition: left 0.2s ease-in-out; /* Smooth transition */
+    overflow-y: auto; /* Enable scrolling if content overflows */
+    scrollbar-width: thin; /* For Firefox */
+    scrollbar-color: #555 #2c3e50;
+  }
+  .sidebar.open {
+    left: 0; /* Slide into view */
+  }
+   
+   
+  
+  
+  .sidebar ul {
+    list-style-type: none;
+    padding-left: 0px;
+  }
+  
+  .sidebar li {
+    padding: 12px 20px;
+  }
+  
+  .sidebar a {
+    color: white;
+    text-decoration: none;
+    display: block;
+    font-size: 20px;
+    transition: 0.1s;
+    padding-left: 20px;
+  }
+  
+  .sidebar a:hover {
+    font-weight: bolder;
+    background-color: #fff;
+    color: slateblue;
+    cursor: pointer;
+  }
+
+  .dropdown-item{
+  border: 1px solid rgb(138, 34, 235);
+  border-radius: 0.5rem;
+  margin: 2px;
+  padding-left: 5px;
+  }
+
+.dropdown-item:hover {
+  background-color: black;
+  
+}
+  
+  #catNav{
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    margin-top: 4rem;
+  }
+
+  
+  
+  /* mobile length usename design start*/
+  .username-badge {
+  position: absolute;
+  top: -12px; /* Adjust the distance above the icon */
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #b943e7;
+  color: white;
+  font-size: 12px;
+  border-radius: 12px;
+  padding: 2px 6px;
+  white-space: nowrap;
+  z-index: 1;
+}
+  /* mobile length usename design end*/

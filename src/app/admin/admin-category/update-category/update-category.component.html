@@ -1,0 +1,36 @@
+<app-header></app-header>
+
+
+<div class="container">
+    <h2>Update Category</h2>
+  
+    <form (ngSubmit)="updateCategory()">
+  
+      <div class="form-group mb-3">
+        <label for="name">Category Name</label>
+        <input id="name" type="text" [(ngModel)]="catDate.name" name="name" class="form-control" />
+      </div>
+  
+      <div class="mb-3">
+        <label for="isActive">Status:</label>
+        <select id="isActive" class="form-select" [(ngModel)]="catDate.isActive" name="isActive" required>
+          <option [value]="true">Active</option>
+          <option [value]="false">Inactive</option>
+        </select>
+      </div>
+  
+      <div class="mb-3">
+        <label>Upload Image</label>
+        <input type="file" id="fileInput" (change)="onFileSelected($event)" class="form-control mt-2" accept="image/*" required />
+      </div>
+
+  
+      <button class="btn btn-primary" type="submit">Update Category</button>
+  
+    </form>
+  
+    <div *ngIf="message" class="alert alert-info mt-3">
+      {{ message }}
+    </div>
+  </div>
+  

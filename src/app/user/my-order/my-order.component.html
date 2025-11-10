@@ -1,0 +1,67 @@
+<app-header></app-header>
+
+<div class="container p-4">
+  <h2 class="text-center mb-4">My Orders</h2>
+
+  <div *ngIf="errorMessage" class="alert alert-danger text-center">
+    {{ errorMessage }}
+  </div>
+
+  <div *ngIf="successMessage" class="alert alert-success text-center">
+    {{ successMessage }}
+  </div>
+
+  <div *ngIf="orderData.length > 0; else noOrders">
+    <div class="table-responsive">
+      <table class="table table-bordered table-hover">
+        <thead class="table-primary">
+          <tr>
+            <th>Order ID</th>
+            <th>Image</th>
+            <th>Order Date</th>
+            <th>Deliver Date</th>
+            <th>Product Details</th>
+            <th>Price</th>
+            <th>Status</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let order of orderData">
+            <td>{{ order.orderId }}</td>
+             <td><img [src]="'https://sam-outlet-backend.onrender.com/'+order.product.imagePath" alt="Product Image" width="90"> </td>
+            <td>{{ order.orderDate | date }}</td>
+            <td>{{ order.deliverDate | date }}</td>
+            <td>{{ order.product.name}}</td>
+            <td>
+              <span class="text-warning fw-bold" *ngIf="order.size">Size: {{ order.size }}</span><br>
+              Quantity: {{ order.quantity }} <br>
+              Price: {{ order.price }} <br>
+              Tax: {{order.tax}} <br>
+             <span style="color: blueviolet;">Total Price: {{  order.price + order.tax}}</span>
+            </td>
+            <td> <span [ngClass]="{ 'statusDanger': order.status === 'Cancelled', 'statusSuccess': order.status === 'Delivered','statusWarning': order.status === 'Order Received'}"> {{ order.status }} </span> 
+            </td>
+           <td>
+                <button
+                  class="btn btn-sm"
+                  [ngClass]="order.status !== 'Cancelled' ? 'btn-danger' : 'btn-secondary disabled'"
+                  [disabled]="order.status === 'Cancelled'"
+                  (click)="order.status !== 'Cancelled' ? cancelOrder(order.orderId) : null">
+                  {{ order.status !== 'Cancelled' ? 'Cancel' : 'Cancelled' }}
+                </button>
+              </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <ng-template #noOrders>
+    <p class="text-center">No orders found for this user.</p>
+  </ng-template>
+</div>
+
+<app-mobile-end-icons></app-mobile-end-icons>
+<app-footer></app-footer>
+

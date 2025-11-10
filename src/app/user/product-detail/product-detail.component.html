@@ -1,0 +1,96 @@
+<app-header></app-header>
+
+<div class="container">
+  <div *ngIf="msg" class=" text-center alert alert-success mt-3">
+        {{ msg }}
+    </div>
+    <div *ngIf="errorMsg" class=" text-center alert alert-danger mt-3">
+        {{ errorMsg }}
+    </div>
+  <div class="row">
+    <!-- Product Image -->
+    <div class="col-md-5 text-center">
+      <img
+        [src]="'https://sam-outlet-backend.onrender.com/uploads/'+particularProduct.imagePath"
+        alt="Product Image"
+        class="img-fluid w-100 rounded shadow"
+  style="max-height: 60vh; object-fit: contain;"
+      /> {{msg}}
+    </div>
+     
+
+    <!-- Product Details -->
+    <div class="col-md-7">
+      <div class="info">
+        <!-- <p class="mt-2">{{product.description | slice:0:40}}</p> -->
+      <span class="fw-bold"> <h4>₹{{ particularProduct.discountPrice }}</h4> </span>
+      <del class="text-muted ms-2">M.R.P: ₹{{particularProduct.price}}</del>
+      <span class="text-success ms-2">({{particularProduct.discount}}% off)</span>
+      </div>
+      <div class="mb-2">
+        <span class="badge bg-success me-2">4.2 ★</span>
+        <small class="text-muted">103 Ratings, 35 Reviews</small>
+      </div>
+
+      <p class="text-muted">Free Delivery</p>
+
+      <!-- Size Selection -->
+      <div *ngIf="particularProduct.categoryName === 'Clothes'" class="mb-3">
+        <strong>Select Size:</strong>
+        <div class="d-flex gap-2 mt-2">
+          <button 
+            *ngFor="let size of sizes"
+            (click)="selectedSize = size"
+            [ngClass]="{
+              'btn-dark': selectedSize === size,
+              'btn-outline-secondary': selectedSize !== size
+            }"
+            class="btn btn-sm">
+            {{ size }}
+          </button>
+        </div>
+      </div>
+      
+
+      <!-- Action Buttons -->
+      <div class="d-flex gap-3 mt-4">
+        <button (click)="saveCart()"  class="btn btn-outline-pink flex-fill"  [disabled]="particularProduct.categoryName === 'Clothes' && !selectedSize">Add to Cart</button>
+        <button  (click)="buyNow()" class="btn btn-outline-pink flex-fill">Buy Now</button>
+      </div>
+
+      <!-- Product Info -->
+      <div class="mt-4">
+        <h6 class="fw-bold">Product Details</h6>
+        <p><strong>Fabric:</strong> jdkdjndc cjksc dko idjon klasdnhf heiasjd </p>
+        <p><strong>Net Quantity:</strong> 1</p>
+        <p>{{ particularProduct.description }}</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container mt-5">
+    <h4 class="mb-4">Related Products</h4>
+    <div class="row">
+      <div class="col-md-3 mb-4" *ngFor="let item of relateProduct">
+        <div class="card h-100">
+          <img [src]="'https://sam-outlet-backend.onrender.com/uploads/'+item.imagePath"
+               class="card-img-top"
+               style="height: 200px; object-fit: contain;" />
+          <div class="card-body">
+            <h6>{{ item.name }}</h6>
+            <div class="info">
+              <!-- <p class="mt-2">{{product.description | slice:0:40}}</p> -->
+            <span class="fw-bold"> <h4>₹{{ item.discountPrice }}</h4> </span>
+            <del class="text-muted ms-2">M.R.P: ₹{{item.price}}</del>
+            <span class="text-success ms-2">({{item.discount}}% off)</span>
+            </div>
+            <a (click)="productDetail(item.id)" class="btn btn-sm btn-outline-primary w-100">View</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+<app-mobile-end-icons></app-mobile-end-icons>
+<app-footer></app-footer>

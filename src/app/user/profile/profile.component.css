@@ -1,0 +1,31 @@
+.container{
+    margin-top: 8rem;
+    max-width: 100%;
+}
+
+.card {
+  border-radius: 15px;
+}
+
+.card-body {
+  padding: 2rem;
+}
+
+.card-img-top {
+  border: 5px solid #007bff;
+}
+
+@media (max-width: 576px) {
+  .card-body {
+    padding: 1rem;
+  }
+  .card-img-top {
+    width: 120px;
+    height: 120px;
+  }
+}
+
+.modal.fade.show {
+  display: block;
+  background-color: rgba(0, 0, 0, 0.5);
+}

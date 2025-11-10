@@ -1,0 +1,104 @@
+<app-header></app-header>
+
+<div class="container  mb-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card shadow-sm">
+                <div class="card-header bg-primary text-white text-center">
+                    <h4>Place Your Order</h4>
+                </div>
+                <form #orderForm="ngForm" (ngSubmit)="saveOrder(orderForm)">
+                    <div class="card-body">
+                        <div *ngIf="msg" class=" text-center alert alert-success mt-3">
+                          {{ msg }}
+                      </div>
+                        <div class="row">
+                            <!-- Billing Address -->
+                            <div class="col-md-6 border-end">
+                                <p class="fs-5 mb-3 text-primary">Billing Address</p>
+
+                                <div class="mb-3">
+                                    <label>First Name</label>
+                                    <input [(ngModel)]="orderData.firstName" type="text" name="firstName" required
+                                        class="form-control">
+                                </div>
+                                <div class="mb-3">
+                                    <label>Last Name</label>
+                                    <input [(ngModel)]="orderData.lastName" type="text" name="lastName" required
+                                        class="form-control">
+                                </div>
+                                <div class="mb-3">
+                                    <label>Email</label>
+                                    <input type="email" [(ngModel)]="orderData.email" name="email" required
+                                        class="form-control">
+                                </div>
+                                <div class="mb-3">
+                                    <label>Mobile Number</label>
+                                    <input type="text" [(ngModel)]="orderData.mobileNo" name="mobileNo" required
+                                        class="form-control">
+                                </div>
+                                <div class="mb-3">
+                                    <label>Address</label>
+                                    <input type="text" [(ngModel)]="orderData.address" name="address" required
+                                        class="form-control">
+                                </div>
+                                <div class="mb-3">
+                                    <label>City</label>
+                                    <input type="text" [(ngModel)]="orderData.city" name="city" required
+                                        class="form-control">
+                                </div>
+                                <div class="mb-3">
+                                    <label>State</label>
+                                    <input type="text" [(ngModel)]="orderData.state" name="state" required
+                                        class="form-control">
+                                </div>
+                                <div class="mb-3">
+                                    <label>Pincode</label>
+                                    <input type="number" [(ngModel)]="orderData.pincode" name="pincode" required
+                                        class="form-control">
+                                </div>
+                            </div>
+
+                            <!-- Payment & Summary -->
+                            <div class="col-md-6">
+                                <p class="fs-5 mb-3 text-primary">Payment Details</p>
+
+                                <div class="mb-3">
+                                    <label class="form-label">Select Payment Type</label>
+                                    <select required [(ngModel)]="orderData.paymentType" name="paymentType"
+                                        class="form-control">
+                                        <option value="" disabled selected>--select--</option>
+                                        <option value="COD">Cash On Delivery</option>
+                                        <option value="ONLINE">Online Payment</option>
+                                    </select>
+                                </div>
+
+                                <!-- Order Summary -->
+                                <div class="card mt-4">
+                                    <div class="card-header bg-secondary text-white">
+                                        <h5>Order Summary</h5>
+                                    </div>
+                                    <div class="card-body">
+                                        <p><strong>Total Price:</strong> {{ totalOrderPrice | number:'1.2-2'}}</p>
+                                        <p><strong>Delivery Fee:</strong> Free Delivery</p>
+                                        <p><strong>Tax:</strong> {{ tax | number:'1.2-2'}}</p>
+                                        <hr>
+                                        <h5><strong>Grand Total:</strong> ₹ {{ grantTotal | number:'1.2-2' }}</h5>
+                                    </div>
+                                </div>
+
+                                <!-- Submit Button -->
+                                <button type="submit"
+                                    class="btn btn-success col-md-12 mt-4 shadow-sm fw-bold hover-scale">
+                                    Place Order
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<app-footer></app-footer>

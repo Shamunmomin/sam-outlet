@@ -1,0 +1,99 @@
+<app-header></app-header>
+
+<div class="conatiner-fluide">
+  <div class="row">
+
+<div class="text-center py-4 mb-4 text-white rounded shadow animate-zoom-in" style="background: linear-gradient(to right,#5F0F40,#FFED66);">
+  <h2 class="fw-bold text-uppercase mb-0">Admin Management</h2>
+</div>
+
+<!-- register form start -->
+<div class="col-md-4">
+  <div class="register-box rounded  p-4" style="background-color: #ffffff; margin-left: 1rem;">
+    
+    <div class="header-box text-center text-white py-3 rounded-top">
+      <h3 class="fw-bold m-0">Register Admin</h3>
+    </div>
+
+    <hr class="my-3" style="border-top: 2px solid #a666ff;">
+
+    <form (ngSubmit)="register()">
+      <div class="mb-3">
+        <label for="name" class="form-label text-dark fw-semibold">Name :</label>
+        <input type="text" id="name" class="form-control" [(ngModel)]="user.name" name="name" placeholder="enter name here..." required>
+      </div>
+
+      <div class="mb-3">
+        <label for="email" class="form-label text-dark fw-semibold">Email :</label>
+        <input type="email" id="email" class="form-control" [(ngModel)]="user.email" name="email" placeholder="enter email here..." required>
+      </div>
+
+      <div class="mb-4">
+        <label for="password" class="form-label text-dark fw-semibold">Password :</label>
+        <input type="password" id="password" class="form-control" [(ngModel)]="user.password" name="password" placeholder="enter password here..." required>
+      </div>
+
+      <div class="d-grid">
+        <button type="submit" class="btn btn-primary p-2 text-light fw-bold " style="width: 50%;">Register</button>
+      </div>
+
+      <div class="text-center mt-3">
+        <p *ngIf="succMsg1" class="text-success fw-semibold">{{ succMsg1 }}</p>
+        <p *ngIf="errorMsg1" class="text-danger fw-semibold">{{ errorMsg1 }}</p>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- admins table start -->
+    <div class="col-md-8 mt-3">
+    <div class="card border-0 custom-shadow  rounded-4" style="backdrop-filter: blur(10px); background: rgba(255, 255, 255, 0.95);">
+    
+<div class="header-box text-center text-white py-3 rounded-top">
+      <h3 class="fw-bold m-0">Register Admin</h3>
+    
+      <div *ngIf="succMsg" class="alert alert-success text-center mt-2">
+        {{ succMsg }}
+      </div>
+      <div *ngIf="errorMsg" class="alert alert-danger text-center mt-2">
+        {{ errorMsg }}
+      </div>
+</div>
+    
+    <div class="card-body p-4">
+      <table class="table table-hover table-bordered align-middle text-left rounded">
+        <thead class="table-primary">
+          <tr>
+            <th>Sl No</th>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Status</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr *ngFor="let user of userData; index as i" class="fade-slide-up hover-glow rounded">
+            <th scope="row">{{ i + 1 }}</th>
+            <td>{{ user.name }}</td>
+            <td>{{ user.email }}</td>
+            <td>
+                <span *ngIf="user.isEnable; else disabled" class="badge bg-success">Enabled</span>
+                  <ng-template #disabled>
+                    <span class="badge bg-danger">Disabled</span>
+                  </ng-template>
+            </td>
+            <td>
+              <a class="btn btn-sm btn-outline-success me-2" (click)="updateStatus(true, user.id)">Active</a>
+              <a class="btn btn-sm btn-outline-danger" (click)="updateStatus(false, user.id)">Inactive</a>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+    </div>
+  </div>
+</div>
+
+<app-footer></app-footer>

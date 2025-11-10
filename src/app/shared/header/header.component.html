@@ -1,0 +1,170 @@
+<nav  *ngIf="userRole != 'ADMIN'"  class="navbar navbar-expand-lg navbar-dark bg-dark px-3 fixed-top ">
+  <div class="container-fluid d-flex align-items-center m-2 p-2">
+    
+    <!-- Website Logo -->
+    <a class="navbar-brand" style="font-size: 25px;" routerLink="">ShopMet
+   </a>
+
+     <!-- Navbar Links (Collapsible on Mobile) -->
+  <div class="collapse navbar-collapse" id="textsize">
+    <ul class="navbar-nav w-100 text-center">
+      <li class="nav-item">
+        <a class="nav-link text-white"  style="margin-left: 6rem;" routerLink=""><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" class="bi bi-house-door-fill" viewBox="0 0 17 18">
+          <path d="M6.5 14.5v-3.505c0-.245.25-.495.5-.495h2c.25 0 .5.25.5.5v3.5a.5.5 0 0 0 .5.5h4a.5.5 0 0 0 .5-.5v-7a.5.5 0 0 0-.146-.354L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293L8.354 1.146a.5.5 0 0 0-.708 0l-6 6A.5.5 0 0 0 1.5 7.5v7a.5.5 0 0 0 .5.5h4a.5.5 0 0 0 .5-.5"/>
+        </svg>Home</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link text-white" routerLink="/user/categories">Categories</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link text-white" routerLink="/user/products">Products</a>
+      </li>
+    </ul>
+  </div>
+
+    <!-- Search Bar (Visible on Large Screens, Toggle on Mobile) -->
+    <div  class="d-none d-lg-flex flex-grow-1 mx-4">
+      <input type="text"  [(ngModel)]="searchText"  class="form-control p-1" placeholder="Search here...">
+      <button (click)="searchProducts()" class="btn btn-warning ms-1 p-1">Search</button>
+    </div>
+     
+    <!-- Right Side Icons -->
+    <div id="textsize" class="d-flex align-items-center">
+      <a  (click)="viewCart()" class="text-white mx-2 d-none d-lg-block">
+        <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-cart3" viewBox="0 0 18 16">
+          <path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .49.598l-1 5a.5.5 0 0 1-.465.401l-9.397.472L4.415 11H13a.5.5 0 0 1 0 1H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5M3.102 4l.84 4.479 9.144-.459L13.89 4zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4m7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4m-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2m7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2"/>
+        </svg>Cart [ {{count}} ]
+      </a>
+
+     
+
+       <div class="collapse navbar-collapse justify-content-end">
+      <ul class="navbar-nav d-none d-lg-flex">
+        <li class="nav-item dropdown">
+          <a 
+            class="nav-link dropdown-toggle d-flex align-items-center" 
+            href="#" 
+            id="userDropdown" 
+            role="button" 
+            data-bs-toggle="dropdown" 
+            aria-expanded="false">
+            <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-person-fill me-2" viewBox="0 0 16 16">
+              <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6"/>
+            </svg>
+            {{user.name}}
+          </a>
+          <ul class="dropdown-menu dropdown-menu-end bg-dark text-white border-2 mt-4 p-2" style="border-color: blueviolet;">
+            <li><a class="dropdown-item text-white mt-3" (click)="goProfile()">Profile</a></li>
+            <li><a class="dropdown-item text-white" routerLink="/user/myOrder">My Order</a></li>
+            <li><a class="dropdown-item text-white bg-danger rounded-pill" (click)="logout()" style="padding-left: 5px;">Logout</a></li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+
+      <!-- <button (click)="logout()" class="btn btn-danger text-white mx-2 d-none d-lg-block" style="padding: 2px; margin-left: 5px;">logout</button> -->
+    </div>
+
+
+
+     <!-- Mobile Cart Icon (Visible only on small screens) -->
+    
+   <div class="position-relative d-inline-block">
+  <a routerLink="/signin" class="text-white d-lg-none">
+    <span class="username-badge">{{ user?.name }}</span>
+    <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-person-fill mt-2" viewBox="0 0 16 16">
+      <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6"/>
+    </svg>
+  </a>
+</div>
+
+
+
+    <!-- Mobile Toggle Button -->
+    <button (click)="toggleSidebar()" class="navbar-toggler ms-0.5" type="button"><span class="navbar-toggler-icon"></span></button>
+     <!-- Mobile Toggle Button -->
+
+  </div>
+</nav>
+
+
+
+
+<!-- Categories Navigation -->
+<div  *ngIf="userRole != 'ADMIN'"  id="catNav" class="bd-light p-2 fixed-top">
+  <div class="container">
+    <ul class="navbar-nav d-none d-lg-flex flex-row gap-5">
+        <a class="nav-link" href="#">Today's Deals</a>
+       
+        <a class="nav-link" href="#">Customer Service</a>
+    
+        <a class="nav-link" href="#">Fashion</a>
+      
+        <a class="nav-link" href="#">About</a>
+           
+    </ul>
+  </div>
+</div>
+
+ <!-- sidebar -->
+    <div class="sidebar" [class.open]="isSidebarOpen">
+    <h2 class="mt-2"><a (click)="goProfile()" style="font-weight: bold;"><svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-person-fill" viewBox="0 0 16 16">
+      <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6"/>
+    </svg>Profile</a></h2>
+    <!-- <button class="toggle-btn" id="toggle-btn">&#9776;</button> -->
+    <ul>
+      <li class="mt-5"><a routerLink="">Home</a></li>
+      <li><a routerLink="/user/categories">Category</a></li>
+      <li><a routerLink="/user/products">Product</a></li>
+      <li><a (click)="viewCart()">Cart</a></li>
+      <li><a routerLink="/user/myOrder">My Order</a></li>
+      <li><a routerLink="#">Today's Deals</a></li>
+      <li><a routerLink="#">Service</a></li>
+      <li><a routerLink="#">Fashion</a></li>
+      <li><button routerLink="/signin" class="btn btn-success p-2"> Log-In</button></li>
+      <li><button (click)="logout()" class="btn btn-danger p-2" >Logout</button></li>
+      <li><a routerLink="#">About</a></li>
+    </ul>
+  </div>
+
+   
+  <!-- admin header -->
+<nav *ngIf="userRole == 'ADMIN'" class="navbar navbar-expand-lg navbar-dark bg-dark px-3 fixed-top">
+  <div class="container-fluid d-flex align-items-center position-relative m-2 p-2">
+
+    <!-- Website Logo -->
+    <!-- <a class="navbar-brand" style="font-size: 25px;" routerLink="/admin">ShopMet</a> -->
+
+    <!-- Centered Admin Text -->
+    <div class="position-absolute start-50 translate-middle-x text-white">
+      <h4 class="m-0" routerLink="/signin">ADMIN SIDE</h4>
+    </div>
+
+    <!-- Right Side User Dropdown -->
+    <div class="collapse navbar-collapse justify-content-end">
+      <ul class="navbar-nav d-none d-lg-flex">
+        <li class="nav-item dropdown">
+          <a 
+            class="nav-link dropdown-toggle d-flex align-items-center" 
+            href="#" 
+            id="userDropdown" 
+            role="button" 
+            data-bs-toggle="dropdown" 
+            aria-expanded="false">
+            <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-person-fill me-2" viewBox="0 0 16 16">
+              <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6"/>
+            </svg>
+            {{user.name}}
+          </a>
+          <ul class="dropdown-menu dropdown-menu-end bg-dark text-white border-2 mt-4 p-2" style="border-color: blueviolet;">
+            <li><a class="dropdown-item text-white mt-3" routerLink="/admin/addAdmin">Admins</a></li>
+            <li><a class="dropdown-item text-white" routerLink="/admin/users">Users</a></li>
+            <li><a class="dropdown-item text-white" routerLink="/admin/orders">Orders</a></li>
+            <li><a class="dropdown-item text-white bg-danger rounded-pill" (click)="logout()" style="padding-left: 5px;">Logout</a></li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+
+  </div>
+</nav>

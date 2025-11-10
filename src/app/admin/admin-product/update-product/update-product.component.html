@@ -1,0 +1,67 @@
+ <app-header></app-header>
+ <div class="container">
+    <div class="card shadow p-4 rounded-4">
+      <h3 class="text-center mb-4 text-primary">Update Product</h3>
+  
+      <!-- Upload Message -->
+      <div *ngIf="uploadMessage" class="alert alert-info text-center">
+        {{ uploadMessage }}
+      </div>
+  
+      <!-- Product Form -->
+      <form (ngSubmit)="updateProduct()">
+        <div class="row mb-3">
+          <div class="col-md-6">
+            <label for="name" class="form-label">Product Name</label>
+            <input type="text" id="name" class="form-control" [(ngModel)]="product.name" name="name" required />
+          </div>
+  
+          <div class="col-md-6">
+            <label for="category" class="form-label">Category</label>
+            <select id="category" class="form-select" [(ngModel)]="product.categoryName" name="categoryName" required>
+              <option *ngFor="let cat of categories" [value]="cat.name">{{ cat.name }}</option>
+            </select>
+          </div>
+        </div>
+  
+        <div class="mb-3">
+          <label for="description" class="form-label">Description</label>
+          <textarea id="description" class="form-control" [(ngModel)]="product.description" name="description" rows="3" required></textarea>
+        </div>
+  
+        <div class="row mb-3">
+          <div class="col-md-3">
+            <label for="stock" class="form-label">Stock</label>
+            <input type="text" id="stock" class="form-control" [(ngModel)]="product.stock" name="stock" required />
+          </div>
+  
+          <div class="col-md-3">
+            <label for="price" class="form-label">Price</label>
+            <input type="number" id="price" class="form-control" [(ngModel)]="product.price" name="price" required />
+          </div>
+  
+          <div class="col-md-3">
+            <label for="discount" class="form-label">Discount (%)</label>
+            <input type="number" id="discount" class="form-control" [(ngModel)]="product.discount" name="discount" />
+          </div>
+  
+          <!-- <div class="col-md-3">
+            <label for="discountPrice" class="form-label">Discounted Price</label>
+            <input type="number" id="discountPrice" class="form-control" [(ngModel)]="product.discountPrice" name="discountPrice" />
+          </div> -->
+        </div>
+  
+        <div class="mb-3">
+          <label for="fileInput" class="form-label">Product Image</label>
+          <input class="form-control" type="file" (change)="onFileSelected($event)" id="fileInput" accept="image/*" />
+        </div>
+  
+        <div class="text-center">
+          <button type="submit" class="btn btn-success px-4">Save Product</button>
+        </div>
+      </form>
+    </div>
+  </div>
+  
+
+ <app-footer></app-footer>

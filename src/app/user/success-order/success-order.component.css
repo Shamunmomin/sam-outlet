@@ -1,0 +1,13 @@
+.container{
+    margin-top: 8rem;
+     max-width: 800px;
+}
+
+.icon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.card {
+  background-color: #f8f9fa;
+}

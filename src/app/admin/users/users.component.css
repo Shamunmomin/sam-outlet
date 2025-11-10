@@ -1,0 +1,30 @@
+.container{
+    margin-top: 6rem;
+}
+
+ .custom-shadow {
+  box-shadow: 0 8px 20px rgba(119, 25, 234, 0.3);
+   transition: box-shadow 0.3s ease-in-out;
+ }
+
+.fade-slide-up {
+  animation: fadeSlideUp 0.7s ease-in-out;
+}
+
+@keyframes fadeSlideUp {
+  0% {
+    opacity: 0;
+    transform: translateY(25px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.hover-glow:hover {
+  box-shadow: 0 0.75rem 1.5rem rgba(23, 119, 221, 0.2);
+  transition: box-shadow 0.3s ease-in-out;
+}
+
+

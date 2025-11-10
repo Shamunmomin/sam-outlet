@@ -1,0 +1,53 @@
+.container{
+    margin-top: 7rem;
+    max-width: 100%;
+}
+
+.table-hover tbody tr:hover {
+  background-color: #f1f1f1;
+  cursor: pointer;
+}
+
+.alert {
+  margin-bottom: 20px;
+}
+ 
+.table-responsive {
+  overflow-x: auto;
+}
+
+.table {
+  width: 100%;
+  margin-bottom: 1rem;
+  color: #212529;
+}
+
+@media (max-width: 768px) {
+  .table {
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 576px) {
+  .table {
+    font-size: 0.8rem;
+  }
+} 
+
+
+
+.statusDanger{
+  color: red;
+  font-weight: bold;
+}
+
+.statusSuccess{
+  color: green;
+  font-weight: bold;
+}
+
+.statusWarning{
+  color: rgb(247, 134, 5);
+  /* background-color: rgb(197, 197, 9); */
+  font-weight: bold;
+} 
