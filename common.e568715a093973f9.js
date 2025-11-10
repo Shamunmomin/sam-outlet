@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunksam_outlet=self.webpackChunksam_outlet||[]).push([[76],{7174:(o,u,r)=>{r.d(u,{q:()=>n});var s=r(540);let n=(()=>{class e{transform(a,t){return a.filter(c=>c.name.toLowerCase().indexOf(t)>-1)}static{this.\u0275fac=function(t){return new(t||e)}}static{this.\u0275pipe=s.EJ8({name:"searchProduct",type:e,pure:!0})}}return e})()}}]);
